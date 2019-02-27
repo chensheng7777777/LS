@@ -9,9 +9,9 @@
     <property name="role_name" column="role_name"></property>
     <property name="create_time" column="create_time"></property>
     <property name="role_status" column="role_status"></property>
-    <bag name="users" table="ls_user_role">
+    <bag name="users" table="ls_user_role" cascade="none">
       <key column="role_id"/>
-      <many-to-many class="ls_user" column="id"></many-to-many>
+      <many-to-many class="ls_user" column="user_id"></many-to-many>
     </bag>
   </class>
 </hibernate-mapping>

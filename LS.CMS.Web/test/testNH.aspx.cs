@@ -15,32 +15,79 @@ namespace LS.CMS.Web.test
         protected void Page_Load(object sender, EventArgs e)
         {
             ISession session = NHibernateHelper.GetCurrentSession();
-            ls_user user = new ls_user()
-            {
-                user_name="ccc",
-                nick_name="c",
-                create_time=DateTime.Now,
-                user_birth=null,
-                user_password="ccc",
-                user_salt="123456",
-                user_status=0,
-                user_roles=new List<ls_role>()
-                {
-                    new ls_role()
-                    {
-                        role_name="ddd",
-                        create_time=DateTime.Now,
-                        role_status=0,
-                    },
-                    new ls_role()
-                    {
-                        role_name="ddds",
-                        create_time=DateTime.Now,
-                        role_status=0,
-                    }
-                }
-            };
-            session.Save(user);
+            //using (ITransaction tran=session.BeginTransaction())
+            //{
+            //    var role = new ls_role()
+            //    {
+            //        create_time = DateTime.Now,
+            //        role_name = "1",
+            //        role_status = 0
+            //    };
+            //    ls_user user = new ls_user()
+            //    {
+            //        user_name = "ccc",
+            //        nick_name = "c",
+            //        create_time = DateTime.Now,
+            //        user_birth = null,
+            //        user_password = "ccc",
+            //        user_salt = "123456",
+            //        user_status = 0,
+            //    };
+            //    ls_user user1 = new ls_user()
+            //    {
+            //        user_name = "ccc",
+            //        nick_name = "c",
+            //        create_time = DateTime.Now,
+            //        user_birth = null,
+            //        user_password = "ccc",
+            //        user_salt = "123456",
+            //        user_status = 0,
+            //    };
+            //    ls_user user2 = new ls_user()
+            //    {
+            //        user_name = "ccc",
+            //        nick_name = "c",
+            //        create_time = DateTime.Now,
+            //        user_birth = null,
+            //        user_password = "ccc",
+            //        user_salt = "123456",
+            //        user_status = 0,
+            //    };
+            //    ls_user user3 = new ls_user()
+            //    {
+            //        user_name = "ccc",
+            //        nick_name = "c",
+            //        create_time = DateTime.Now,
+            //        user_birth = null,
+            //        user_password = "ccc",
+            //        user_salt = "123456",
+            //        user_status = 0,
+            //    };
+            //    ls_user user4 = new ls_user()
+            //    {
+            //        user_name = "ccc",
+            //        nick_name = "c",
+            //        create_time = DateTime.Now,
+            //        user_birth = null,
+            //        user_password = "ccc",
+            //        user_salt = "123456",
+            //        user_status = 0,
+            //    };
+            //    role.users = new List<ls_user>
+            //    {
+            //        user,user1,user2,user3,user4
+            //    };
+            //    session.Save(user);
+            //    session.Save(user1);
+            //    session.Save(user2);
+            //    session.Save(user3);
+            //    session.Save(user4);
+            //    session.Save(role);
+            //    tran.Commit();
+            //}
+
+            var models=session.Get<ls_role>(14);
+               
         }
     }
 }
