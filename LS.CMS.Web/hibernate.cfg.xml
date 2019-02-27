@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<!-- NHibnernate配置 -->
+<hibernate-configuration xmlns="urn:nhibernate-configuration-2.2">
+  <session-factory>
+    <!-- 数据库方言 -->
+    <property name="dialect">NHibernate.Dialect.MsSql2008Dialect</property>
+    <!-- 连接字符串 -->
+    <property name="connection.connection_string">
+      server=.;uid=sa;pwd=1ab123456.;database=ls_cms;
+    </property>
+    <!-- 数据库驱动类 -->
+    <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
+    <!-- 最多一次批处理SQL语句的数量 -->
+    <property name="adonet.batch_size">10</property>
+    <!-- 是否展示SQL语句 -->
+    <property name="show_sql">true</property>
+    <!-- 格式化sql语句 -->
+    <property name="format_sql">true</property>
+    <!-- 执行超时时间 -->
+    <property name="command_timeout">60</property>
+    <!-- 映射文件所在的程序集 -->
+    <mapping assembly="LS.CMS.Web" />
+  </session-factory>
+</hibernate-configuration>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="LS.CMS.Model" assembly="LS.CMS.Model">
+
+  <class name="ls_user" table="ls_user">
+    <id name="id" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="user_name" column="user_name"></property>
+    <property name="user_mobile" column="user_mobile"></property>
+    <property name="user_password" column="user_password"></property>
+    <property name="user_salt" column="user_salt"></property>
+    <property name="user_avatar" column="user_avatar"></property>
+    <property name="user_birth" column="user_birth"></property>
+    <property name="nick_name" column="nick_name"></property>
+    <property name="real_name" column="real_name"></property>
+    <property name="create_time" column="create_time"></property>
+    <property name="create_ip" column="create_ip"></property>
+    <property name="user_status" column="user_status"></property>
+    <bag name="user_roles" table="ls_user_role" cascade="all">
+      <key column="user_id"/>
+      <many-to-many class="ls_role" column="id"></many-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>
