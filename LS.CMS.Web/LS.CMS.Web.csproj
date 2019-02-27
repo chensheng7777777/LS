@@ -114,6 +114,7 @@
     <Content Include="admin\skin\icon\iconfont.js" />
     <Content Include="admin\skin\icon\iconfont.svg" />
     <Content Include="admin\skin\layout.css" />
+    <Content Include="App_Data\ls.sql" />
     <Content Include="css\image1.gif" />
     <Content Include="css\image2.gif" />
     <Content Include="css\jcrop.gif" />
