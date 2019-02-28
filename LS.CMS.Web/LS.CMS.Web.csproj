@@ -137,6 +137,9 @@
     <EmbeddedResource Include="Mapping\ls_role.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Mapping\ls_nav.hbm..xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
     <Content Include="scripts\artdialog\dialog-min.js" />
     <Content Include="scripts\artdialog\dialog-plus-min.js" />
     <Content Include="scripts\artdialog\ui-dialog.css" />

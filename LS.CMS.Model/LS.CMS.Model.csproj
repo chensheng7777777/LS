@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ls_base.cs" />
     <Compile Include="ls_role.cs" />
     <Compile Include="ls_user.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
