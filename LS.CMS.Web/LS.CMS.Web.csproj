@@ -134,10 +134,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <BrowseToURL>~/Mapping/ls_user.hbm.xml</BrowseToURL>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\ls_role.hbm.xml">
+    <EmbeddedResource Include="Mapping\ls_nav.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mapping\ls_nav.hbm..xml">
+    <EmbeddedResource Include="Mapping\ls_role.hbm.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <Content Include="scripts\artdialog\dialog-min.js" />

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="LS.CMS.Model" assembly="LS.CMS.Model">
+
+  <class name="ls_nav" table="ls_nav">
+    <id name="id" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="parent_id" column="parent_id"></property>
+    <property name="nav_name" column="nav_name"></property>
+    <property name="nav_title" column="nav_title"></property>
+    <property name="icon_url" column="icon_url"></property>
+    <property name="link_url" column="link_url"></property>
+    <property name="nav_status" column="nav_status"></property>
+    <property name="nav_desc" column="nav_desc"></property>
+    <property name="create_time" column="create_time"></property>
+    <bag name="roles" table="ls_role_nav" >
+      <key column="nav_id"/>
+      <many-to-many class="ls_role" column="role_id"></many-to-many>
+    </bag>
+  </class>
+</hibernate-mapping>
+
+

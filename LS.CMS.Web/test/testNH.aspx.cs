@@ -86,8 +86,54 @@ namespace LS.CMS.Web.test
             //    tran.Commit();
             //}
 
-            var models=session.Get<ls_role>(14);
-               
+            //var models=session.Get<ls_role>(14);
+
+            using (ITransaction tran = session.BeginTransaction())
+            {
+                //ls_role role = new ls_role()
+                //{
+                //    create_time=DateTime.Now,
+                //    role_name="sss",
+                //    role_status=0,   
+                //};
+                //ls_nav nav1 = new ls_nav()
+                //{
+                //    create_time=DateTime.Now,
+                //    nav_title="ss",
+                //    nav_status=0,
+                //    nav_name="s",
+                //    icon_url="s",
+                //    nav_desc="ss",
+                //    parent_id=0,
+                //};
+                //ls_nav nav2 = new ls_nav()
+                //{
+                //    create_time = DateTime.Now,
+                //    nav_title = "ss",
+                //    nav_status = 0,
+                //    nav_name = "s",
+                //    icon_url = "s",
+                //    nav_desc = "ss",
+                //    parent_id = 0,
+                //};
+                //ls_nav nav3 = new ls_nav()
+                //{
+                //    create_time = DateTime.Now,
+                //    nav_title = "ss",
+                //    nav_status = 0,
+                //    nav_name = "s",
+                //    icon_url = "s",
+                //    nav_desc = "ss",
+                //    parent_id = 0,
+                //};
+
+                //role.navs =new List<ls_nav>{ nav1,nav2,nav3};
+                //session.Save(nav1);
+                //session.Save(nav2);
+                //session.Save(nav3);
+                //session.Save(role);
+                tran.Commit();
+            }
         }
     }
 }

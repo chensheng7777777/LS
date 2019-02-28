@@ -13,7 +13,9 @@
       <key column="role_id"/>
       <many-to-many class="ls_user" column="user_id"></many-to-many>
     </bag>
+    <bag name="navs" table="ls_role_nav" cascade="none">
+      <key column="role_id"/>
+      <many-to-many class="ls_nav" column="nav_id"></many-to-many>
+    </bag>
   </class>
 </hibernate-mapping>
-
-

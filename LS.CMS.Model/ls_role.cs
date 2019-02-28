@@ -39,5 +39,9 @@ namespace LS.CMS.Model
         /// 用户
         /// </summary>
         public virtual IList<ls_user> users { get; set; }
+        /// <summary>
+        /// 导航
+        /// </summary>
+        public virtual IList<ls_nav> navs { get; set; }
     }
 }
