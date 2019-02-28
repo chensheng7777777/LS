@@ -1,6 +1,6 @@
 ﻿USE [ls_cms]
 GO
-/****** Object:  Table [dbo].[ls_user_role]    Script Date: 02/27/2019 17:47:27 ******/
+/****** Object:  Table [dbo].[ls_user_role]    Script Date: 02/28/2019 18:01:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[ls_user_role](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ls_user]    Script Date: 02/27/2019 17:47:27 ******/
+/****** Object:  Table [dbo].[ls_user]    Script Date: 02/28/2019 18:01:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -40,7 +40,22 @@ CREATE TABLE [dbo].[ls_user](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ls_role]    Script Date: 02/27/2019 17:47:27 ******/
+/****** Object:  Table [dbo].[ls_role_nav]    Script Date: 02/28/2019 18:01:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ls_role_nav](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[role_id] [int] NOT NULL,
+	[nav_id] [int] NOT NULL,
+ CONSTRAINT [PK_ls_role_nav] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ls_role]    Script Date: 02/28/2019 18:01:13 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -51,6 +66,27 @@ CREATE TABLE [dbo].[ls_role](
 	[create_time] [datetime] NOT NULL,
 	[role_status] [int] NOT NULL,
  CONSTRAINT [PK_ls_role] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ls_nav]    Script Date: 02/28/2019 18:01:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ls_nav](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[parent_id] [int] NOT NULL,
+	[nav_name] [nvarchar](32) NOT NULL,
+	[nav_title] [nvarchar](32) NOT NULL,
+	[icon_url] [nvarchar](64) NULL,
+	[link_url] [nvarchar](64) NULL,
+	[nav_status] [int] NOT NULL,
+	[nav_desc] [nvarchar](64) NULL,
+	[create_time] [datetime] NOT NULL,
+ CONSTRAINT [PK_ls_nav] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
