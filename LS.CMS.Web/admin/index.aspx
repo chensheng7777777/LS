@@ -14,6 +14,9 @@
     <script type="text/javascript" charset="utf-8" src="../scripts/jquery/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../scripts/jquery/jquery.nicescroll.js"></script>
     <script type="text/javascript" charset="utf-8" src="../scripts/artdialog/dialog-plus-min.js"></script>
+    <script>
+        var navObjs =<%=navObj%>;
+    </script>
 </head>
 <body class="indexbody">
     <form id="form1" runat="server">

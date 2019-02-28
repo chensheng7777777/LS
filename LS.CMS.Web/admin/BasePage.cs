@@ -74,13 +74,40 @@ namespace LS.CMS.Web.admin
                     strNav.Append("\"title\":\""+item.nav_title+"\",");
                     strNav.Append("\"icon\":\""+item.icon_url+"\",");
                     strNav.Append("\"url\":\"" + item.link_url + "\",");
-                    strNav.Append("\"alt\":\"" + item.nav_desc + "\"");
+                    strNav.Append("\"alt\":\"" + item.nav_desc + "\",");
+
+                    //拼接children字段
+                    BuildNavChildren(navs, item.id,strNav);
+
+
                     strNav.Append("},");
                 }
                 strNav.Remove(strNav.Length-1, 1);
                 strNav.Append("]}");
                 return strNav.ToString();
             }
+        }
+
+        protected void BuildNavChildren(IList<ls_nav> list,int parentId,StringBuilder sb)
+        {
+            sb.Append("\"children\":[");
+            var models = list.Where(c=>c.parent_id==parentId);
+            foreach (ls_nav item in models)
+            {
+                sb.Append("{");
+                sb.Append("\"name\":\"" + item.nav_name + "\",");
+                sb.Append("\"title\":\"" + item.nav_title + "\",");
+                sb.Append("\"icon\":\"" + item.icon_url + "\",");
+                sb.Append("\"url\":\"" + item.link_url + "\",");
+                sb.Append("\"alt\":\"" + item.nav_desc + "\",");
+                BuildNavChildren(list,item.id,sb);
+                sb.Append("},");
+            }
+            if (models.Count()>0)
+            {
+                sb.Remove(sb.Length - 1, 1);
+            }
+            sb.Append("]");
         }
 
 
