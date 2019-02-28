@@ -34,7 +34,14 @@ namespace LS.CMS.Web
 
         protected void Application_Error(object sender, EventArgs e)
         {
-
+            //Exception objError = Server.GetLastError().GetBaseException();
+            ////清除当前异常 使之不返回到请求页面
+            //Server.ClearError();
+            //lock (this)
+            //{
+            //    LogHelper.SaveException(objError);
+            //}
+            //Server.Transfer("500.html");
         }
 
         protected void Session_End(object sender, EventArgs e)

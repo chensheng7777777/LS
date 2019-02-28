@@ -13,5 +13,11 @@ namespace LS.CMS.Web.admin
         {
 
         }
+
+        protected void btnSubmit_Click(object sender, EventArgs e)
+        {
+            string userName = txtUserName.Text;
+            string userPwd = txtPassword.Text;
+        }
     }
 }

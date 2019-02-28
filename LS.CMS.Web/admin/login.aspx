@@ -27,7 +27,7 @@
                     <label class="icon" for="txtPassword"><i class="iconfont icon-key"></i></label>
                 </div>
                 <div class="col">
-                    <asp:Button ID="btnSubmit" runat="server" Text="登 录" CssClass="login-btn" />
+                    <asp:Button ID="btnSubmit" runat="server" Text="登 录" CssClass="login-btn" OnClick="btnSubmit_Click" />
                 </div>
             </div>
             <div class="login-tips"><i class="iconfont icon-info"></i>
