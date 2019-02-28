@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Web;
 
 using LS.CMS.BLL;
@@ -54,10 +55,32 @@ namespace LS.CMS.Web.admin
         public string GetNavObjs()
         {
 
+            ls_nav_bll bll = new ls_nav_bll();
 
-            return "";
-
-
+            if (!IsLogin())
+            {
+                return "";
+            }
+            else
+            {
+                StringBuilder strNav = new StringBuilder();
+                strNav.Append("{ \"navs\":[");
+                IList<ls_nav> navs = bll.GetNavs(GetUserInfo().id);
+                var topNav = navs.Where(c=>c.parent_id==0);
+                foreach(var item in topNav)
+                {
+                    strNav.Append("{");
+                    strNav.Append("\"name\":\""+item.nav_name+"\",");
+                    strNav.Append("\"title\":\""+item.nav_title+"\",");
+                    strNav.Append("\"icon\":\""+item.icon_url+"\",");
+                    strNav.Append("\"url\":\"" + item.link_url + "\",");
+                    strNav.Append("\"alt\":\"" + item.nav_desc + "\"");
+                    strNav.Append("},");
+                }
+                strNav.Remove(strNav.Length-1, 1);
+                strNav.Append("]}");
+                return strNav.ToString();
+            }
         }
 
 

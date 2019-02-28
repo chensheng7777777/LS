@@ -8,6 +8,7 @@ using LS.CMS.DBUtility;
 using LS.CMS.Model;
 using NHibernate;
 using NHibernate.Criterion;
+using NHibernate.Transform;
 
 namespace LS.CMS.DAL
 {
@@ -25,7 +26,7 @@ namespace LS.CMS.DAL
         /// <returns>导航集合</returns>
         public IList<ls_nav> GetNavs(int userId)
         {
-            return session.CreateSQLQuery("select t3.* from dbo.ls_user_role as t1 inner join dbo.ls_role_nav as t2 on t1.role_id=t2.role_id inner join dbo.ls_nav as t3 on t2.nav_id=t3.id where t1.user_id=:user_id").SetInt32("user_id", userId).List<ls_nav>();
+            return session.CreateSQLQuery("select t3.* from dbo.ls_user_role as t1 inner join dbo.ls_role_nav as t2 on t1.role_id=t2.role_id inner join dbo.ls_nav as t3 on t2.nav_id=t3.id where t1.user_id=:user_id").SetInt32("user_id", userId).SetResultTransformer(Transformers.AliasToBean<ls_nav>()).List<ls_nav>();
 
         }
 
