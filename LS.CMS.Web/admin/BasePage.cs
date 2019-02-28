@@ -51,5 +51,15 @@ namespace LS.CMS.Web.admin
             return null;
         }
 
+        public string GetNavObjs()
+        {
+
+
+            return "";
+
+
+        }
+
+
     }
 }

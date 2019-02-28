@@ -61,5 +61,6 @@ namespace LS.CMS.BLL
             return userdal.GetUser(cookieUserName,cookiePassword,false);
         }
 
+
     }
 }

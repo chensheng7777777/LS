@@ -15,8 +15,8 @@ namespace LS.CMS.Web.test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ls_user_bll bll = new ls_user_bll();
-            var model=bll.GetCookieUser("ccc","ccc");
+            ls_nav_bll bll = new ls_nav_bll();
+            var models=bll.GetNavs(12);
 
         }
     }
