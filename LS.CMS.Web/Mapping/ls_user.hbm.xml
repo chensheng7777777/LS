@@ -17,7 +17,7 @@
     <property name="create_time" column="create_time"></property>
     <property name="create_ip" column="create_ip"></property>
     <property name="user_status" column="user_status"></property>
-    <bag name="user_roles" table="ls_user_role" cascade="none">
+    <bag name="user_roles" table="ls_user_role" cascade="all">
       <key column="user_id"/>
       <many-to-many class="ls_role" column="role_id"></many-to-many>
     </bag>

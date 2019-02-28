@@ -132,6 +132,15 @@ namespace LS.CMS.Web.test
                 //session.Save(nav2);
                 //session.Save(nav3);
                 //session.Save(role);
+                //tran.Commit();
+                var model = (ls_user)session.Get(typeof(ls_user), 20);
+                model.user_roles.Add(new ls_role()
+                {
+                    create_time=DateTime.Now,
+                    role_name="jjj",
+                    role_status=0
+                });
+                session.Save(model);
                 tran.Commit();
             }
         }
