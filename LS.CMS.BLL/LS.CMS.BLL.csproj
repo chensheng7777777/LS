@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ls_log_bll.cs" />
     <Compile Include="ls_nav_bll.cs" />
+    <Compile Include="ls_role_bll.cs" />
     <Compile Include="ls_sysconfig_bll.cs" />
     <Compile Include="ls_user_bll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

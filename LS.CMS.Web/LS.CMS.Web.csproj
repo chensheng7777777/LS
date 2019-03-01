@@ -86,12 +86,14 @@
     <Content Include="admin\center.aspx" />
     <Content Include="admin\js\common.js" />
     <Content Include="admin\js\index.js" />
+    <Content Include="admin\js\main.js" />
     <Content Include="admin\skin\icon\iconfont.eot" />
     <Content Include="admin\skin\icon\iconfont.ttf" />
     <Content Include="admin\skin\icon\iconfont.woff" />
     <EmbeddedResource Include="hibernate.cfg.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <Content Include="admin\users\user_list.aspx" />
     <Content Include="App_Data\sys.config" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
@@ -289,6 +291,13 @@
     </Compile>
     <Compile Include="admin\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\users\user_list.aspx.cs">
+      <DependentUpon>user_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\users\user_list.aspx.designer.cs">
+      <DependentUpon>user_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
