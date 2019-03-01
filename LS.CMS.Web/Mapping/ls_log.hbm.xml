@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="LS.CMS.Model" assembly="LS.CMS.Model">
+
+  <class name="ls_log" table="ls_log">
+    <id name="id" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="user_id" column="user_id"></property>
+    <property name="user_name" column="user_name"></property>
+    <property name="action_type" column="action_type"></property>
+    <property name="remark" column="remark"></property>
+    <property name="user_ip" column="user_ip"></property>
+    <property name="add_time" column="add_time"></property>
+  </class>
+</hibernate-mapping>

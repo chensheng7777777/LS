@@ -13,9 +13,10 @@ namespace LS.CMS.Web.admin
 {
     public partial class login : System.Web.UI.Page
     {
+        protected ls_sysconfig sysConfig;
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            sysConfig = new ls_sysconfig_bll().LoadConfig();
         }
 
         protected void btnSubmit_Click(object sender, EventArgs e)
@@ -47,7 +48,17 @@ namespace LS.CMS.Web.admin
                 Response.Cookies[LSKeys.COOKIE_USER_NAME].Value = userName;
                 Response.Cookies[LSKeys.COOKIE_PASSWORD].Value = user.user_password;
                 //登录成功记录登录日志
-
+                if (sysConfig.log_status>0)
+                {
+                    new ls_log_bll().SaveLog(new ls_log()
+                    {
+                        user_id=user.id,
+                        user_name=user.nick_name,
+                        action_type=LSEnums.ActionEnum.Login.ToString(),
+                        add_time=DateTime.Now,
+                        user_ip=LSRequest.GetIP()
+                    });
+                }
                 Response.Redirect("index.aspx");
             }
         }
