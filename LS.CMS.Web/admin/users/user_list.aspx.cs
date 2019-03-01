@@ -21,6 +21,7 @@ namespace LS.CMS.Web.admin.users
             if (!IsPostBack)
             {
                 BindRoleDropDownList();
+                BindUserList();
             }
         }
 
@@ -35,6 +36,9 @@ namespace LS.CMS.Web.admin.users
             this.page = LSRequest.GetQueryInt("page",1);
             this.pageSize = GetPageSize(10);
             string name = txtKeywords.Text;
+
+            int totalCount;
+            var models = new ls_user_bll().GetPagedUserList(2,10, "cs", "2018-01-01", endTime, out totalCount);
 
            
         }

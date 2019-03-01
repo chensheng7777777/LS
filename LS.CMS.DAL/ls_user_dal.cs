@@ -83,5 +83,40 @@ namespace LS.CMS.DAL
             return criteria.UniqueResult<ls_user>();
         }
 
+
+        /// <summary>
+        /// 获取用户分页
+        /// </summary>
+        /// <param name="pageIndex"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="name"></param>
+        /// <param name="startTime"></param>
+        /// <param name="endTime"></param>
+        /// <param name=""></param>
+        /// <returns></returns>
+        public IList<ls_user> GetPagedUserList(int pageIndex, int pageSize, string name, string startTime, string endTime, out int totalCount)
+        {
+            ICriteria criteria = db.CreateCriteria(typeof(ls_user));
+            Disjunction dis = Restrictions.Disjunction();
+            if (!string.IsNullOrEmpty(name))
+            {
+                dis.Add(Restrictions.Like("user_name","%"+name+"%"));
+            }
+            if (!string.IsNullOrEmpty(startTime))
+            {
+                dis.Add(Restrictions.Gt("create_time",Convert.ToDateTime(startTime)));
+            }
+            if (!string.IsNullOrEmpty(endTime))
+            {
+                dis.Add(Restrictions.Lt("create_time", Convert.ToDateTime(endTime)));
+            }
+            criteria.Add(dis);
+            totalCount=(int)criteria.SetProjection(Projections.RowCount()).UniqueResult();
+            criteria.SetFirstResult(pageIndex*pageSize);
+            criteria.SetMaxResults(pageSize);
+            return criteria.List<ls_user>();
+
+        }
+
     }
 }
