@@ -33,6 +33,25 @@ namespace LS.CMS.Common
             }
             return baseDirectory;
         }
+
+
+        /// <summary>
+        /// 保存HibernateSQL语句
+        /// </summary>
+        /// <param name="sql"></param>
+        public static void SaveSQLToLog(string sql)
+        {
+            FileStream stream = new FileStream(GetLogDirectory("SQL") + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append, FileAccess.Write, FileShare.Delete | FileShare.ReadWrite);
+            StreamWriter writer = new StreamWriter(stream);
+            writer.WriteLine("====");
+            if (!string.IsNullOrWhiteSpace(sql))
+                writer.WriteLine(string.Format("Note:{0}", sql));
+            writer.WriteLine(string.Format("DateTime:{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff")));
+            stream.Flush();
+            writer.Close();
+            stream.Close();
+        }
+
         /// <summary>
         /// 保存日志
         /// </summary>

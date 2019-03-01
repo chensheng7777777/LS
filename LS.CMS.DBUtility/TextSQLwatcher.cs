@@ -12,7 +12,7 @@ namespace LS.CMS.DBUtility
     {
         public override NHibernate.SqlCommand.SqlString OnPrepareStatement(NHibernate.SqlCommand.SqlString sql)
         {
-            LogHelper.SaveNote(sql.ToString());
+            LogHelper.SaveSQLToLog(sql.ToString());
             return base.OnPrepareStatement(sql);
         }
     }
