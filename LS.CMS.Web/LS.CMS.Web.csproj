@@ -83,6 +83,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="admin\js\common.js" />
+    <Content Include="admin\js\index.js" />
     <Content Include="admin\skin\icon\iconfont.eot" />
     <Content Include="admin\skin\icon\iconfont.ttf" />
     <Content Include="admin\skin\icon\iconfont.woff" />

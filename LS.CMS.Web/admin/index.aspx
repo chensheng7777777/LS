@@ -14,9 +14,11 @@
     <script type="text/javascript" charset="utf-8" src="../scripts/jquery/jquery-1.11.2.min.js"></script>
     <script type="text/javascript" charset="utf-8" src="../scripts/jquery/jquery.nicescroll.js"></script>
     <script type="text/javascript" charset="utf-8" src="../scripts/artdialog/dialog-plus-min.js"></script>
+    <script src="js/common.js"></script>
     <script>
         var navObjs =<%=navObj%>;
     </script>
+    <script src="js/index.js"></script>
 </head>
 <body class="indexbody">
     <form id="form1" runat="server">
@@ -69,7 +71,30 @@
 
         <div class="main-left">
             <h1 class="logo"></h1>
-            <div id="sidebar-nav" class="sidebar-nav"></div>
+            <div id="sidebar-nav" class="sidebar-nav">
+
+
+                <div class="list-group" style="display:block">
+
+                    <div class="list-wrap">
+
+
+                        <h2 class="left-toggle">垃视管理<i class="iconfont icon-arrow-up" style="cursor:pointer;"></i></h2>
+
+                        <!--左侧导航容器-->
+                        <ul style="display:block;" class="nav-container">
+
+
+
+                        </ul>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
         </div>
 
         <div class="main-container">
