@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace LS.CMS.Web.admin
 {
-    public partial class center : System.Web.UI.Page
+    public partial class center :BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

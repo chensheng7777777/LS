@@ -14,6 +14,20 @@ namespace LS.CMS.Web.admin
     public class BasePage:System.Web.UI.Page
     {
 
+        public BasePage()
+        {
+            this.Load += new EventHandler(BasePage_Load);
+        }
+
+        protected void BasePage_Load(object sender,EventArgs e)
+        {
+            if (!IsLogin())
+            {
+                Response.Redirect("/admin/login.aspx");
+            }
+        }
+
+
         /// <summary>
         /// 判断是否登录
         /// </summary>
@@ -24,8 +38,8 @@ namespace LS.CMS.Web.admin
             {
                 return true;
             }
-            string loginName = HttpContext.Current.Request.Cookies[LSKeys.COOKIE_USER_NAME].Value;
-            string loginPwd = HttpContext.Current.Request.Cookies[LSKeys.COOKIE_PASSWORD].Value;
+            string loginName = Utils.GetCookie(LSKeys.COOKIE_USER_NAME);
+            string loginPwd = Utils.GetCookie(LSKeys.COOKIE_PASSWORD);
             if (!string.IsNullOrEmpty(loginName) && !string.IsNullOrEmpty(loginPwd))
             {
                 ls_user_bll userBLL = new ls_user_bll();
