@@ -15,8 +15,8 @@ namespace LS.CMS.Web.test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ls_nav_bll bll = new ls_nav_bll();
-            var models=bll.GetNavs(12);
+            ls_sysconfig_bll bll = new ls_sysconfig_bll();
+            bll.SaveConfig(new ls_sysconfig() { });
 
         }
     }

@@ -37,5 +37,24 @@ namespace LS.CMS.Common
         public const string COOKIE_PASSWORD = "ls_cookie_password";
 
         #endregion
+
+
+        #region CACHE HELPER
+
+        /// <summary>
+        /// 系统配置缓存键
+        /// </summary>
+        public const string CACHE_SYS_CONFIG = "ls_cache_sys_config";
+
+        #endregion
+
+
+        #region FILE HELPER
+        /// <summary>
+        /// 文件系统配置
+        /// </summary>
+        public const string FILE_SYS_CONFIG = "sysconfig";
+
+        #endregion
     }
 }
