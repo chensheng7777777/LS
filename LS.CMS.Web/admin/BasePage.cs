@@ -32,12 +32,13 @@ namespace LS.CMS.Web.admin
             }
 
             //判断是否有访问本页面的权限
-
             //如果没有跳转的话,记录访问日志(访问日志向队列中推送),在全局任务调度中每60秒完成一次批量写入
             //目前首先记录到数据库中
             Uri uri = HttpContext.Current.Request.Url;
 
         }
+
+
 
 
         /// <summary>

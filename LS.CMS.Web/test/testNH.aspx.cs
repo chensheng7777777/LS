@@ -15,9 +15,7 @@ namespace LS.CMS.Web.test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            ls_sysconfig_bll bll = new ls_sysconfig_bll();
-            bll.SaveConfig(new ls_sysconfig() { });
-
+            int count=sql_analysis.GetDayCount(2019,3,1);
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="ls_sysconfig_bll.cs" />
     <Compile Include="ls_user_bll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sql_analysis.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LS.CMS.Common\LS.CMS.Common.csproj">
