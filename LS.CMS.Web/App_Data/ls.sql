@@ -1,6 +1,27 @@
 ﻿USE [ls_cms]
 GO
-/****** Object:  Table [dbo].[ls_user_role]    Script Date: 02/28/2019 18:01:13 ******/
+/****** Object:  Table [dbo].[ls_visit_log]    Script Date: 03/01/2019 17:23:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ls_visit_log](
+	[id] [uniqueidentifier] NOT NULL,
+	[user_id] [int] NULL,
+	[user_name] [nvarchar](32) NULL,
+	[visit_ip] [nvarchar](50) NULL,
+	[visit_time] [datetime] NULL,
+	[visit_url] [nvarchar](64) NULL,
+	[visit_area] [nvarchar](64) NULL,
+	[visit_os] [nvarchar](64) NULL,
+	[visit_browser] [nvarchar](64) NULL,
+ CONSTRAINT [PK_ls_visit_log] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ls_user_role]    Script Date: 03/01/2019 17:23:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15,7 +36,7 @@ CREATE TABLE [dbo].[ls_user_role](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ls_user]    Script Date: 02/28/2019 18:01:13 ******/
+/****** Object:  Table [dbo].[ls_user]    Script Date: 03/01/2019 17:23:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -40,7 +61,7 @@ CREATE TABLE [dbo].[ls_user](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ls_role_nav]    Script Date: 02/28/2019 18:01:13 ******/
+/****** Object:  Table [dbo].[ls_role_nav]    Script Date: 03/01/2019 17:23:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -55,7 +76,7 @@ CREATE TABLE [dbo].[ls_role_nav](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ls_role]    Script Date: 02/28/2019 18:01:13 ******/
+/****** Object:  Table [dbo].[ls_role]    Script Date: 03/01/2019 17:23:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -71,7 +92,7 @@ CREATE TABLE [dbo].[ls_role](
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[ls_nav]    Script Date: 02/28/2019 18:01:13 ******/
+/****** Object:  Table [dbo].[ls_nav]    Script Date: 03/01/2019 17:23:24 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -87,6 +108,25 @@ CREATE TABLE [dbo].[ls_nav](
 	[nav_desc] [nvarchar](64) NULL,
 	[create_time] [datetime] NOT NULL,
  CONSTRAINT [PK_ls_nav] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[ls_log]    Script Date: 03/01/2019 17:23:24 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[ls_log](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[user_id] [int] NULL,
+	[user_name] [nvarchar](100) NULL,
+	[action_type] [nvarchar](100) NULL,
+	[remark] [nvarchar](255) NULL,
+	[user_ip] [nvarchar](30) NULL,
+	[add_time] [datetime] NULL,
+ CONSTRAINT [PK_DT_MANAGER_LOG] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
