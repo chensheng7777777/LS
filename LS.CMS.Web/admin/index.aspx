@@ -41,10 +41,17 @@
             <div class="nav-right">
                 <div class="info">
                     <h4>
+                        <%if (!string.IsNullOrEmpty(UserInfo.user_avatar))
+                            {%>
+                        <img src="<%=UserInfo.user_avatar%>" />
+                        <%}
+                        else
+                        {%>
                         <i class="iconfont icon-user"></i>
-
+                        <%}%>
                     </h4>
-                    <span>您好，
+                    <span>您好<br />
+                        <%=UserInfo.user_name%>
                     </span>
                 </div>
                 <div class="option">
@@ -74,18 +81,15 @@
             <div id="sidebar-nav" class="sidebar-nav">
 
 
-                <div class="list-group" style="display:block">
+                <div class="list-group" style="display: block">
 
                     <div class="list-wrap">
 
 
-                        <h2 class="left-toggle">垃视管理<i class="iconfont icon-arrow-up" style="cursor:pointer;"></i></h2>
+                        <h2 class="left-toggle">垃视管理<i class="iconfont icon-arrow-up" style="cursor: pointer;"></i></h2>
 
                         <!--左侧导航容器-->
-                        <ul style="display:block;" class="nav-container">
-
-
-
+                        <ul style="display: block;" class="nav-container">
                         </ul>
 
 

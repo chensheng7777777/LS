@@ -46,6 +46,8 @@ namespace LS.CMS.Web.admin
                 Session[LSKeys.SESSION_USER_INFO] = user;
                 Response.Cookies[LSKeys.COOKIE_USER_NAME].Value = userName;
                 Response.Cookies[LSKeys.COOKIE_PASSWORD].Value = user.user_password;
+                //登录成功记录登录日志
+
                 Response.Redirect("index.aspx");
             }
         }

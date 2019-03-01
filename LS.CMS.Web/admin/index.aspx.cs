@@ -12,9 +12,11 @@ namespace LS.CMS.Web.admin
 {
     public partial class index : BasePage
     {
+        protected ls_user UserInfo;
         protected string navObj;
         protected void Page_Load(object sender, EventArgs e)
         {
+            UserInfo = GetUserInfo();
             navObj = GetNavObjs();
         }
     }

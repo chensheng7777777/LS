@@ -38,9 +38,9 @@
 <div class="nlist-2">
   <h3><i class="iconfont icon-setting"></i>站点信息</h3>
   <ul>
-    <%--<li><p>站点名称：<%=sysConfig.webname %></p></li>
-    <li><p>公司名称：<%=sysConfig.webcompany %></p></li>
-    <li><p>附件上传目录：<%=sysConfig.filepath %></p></li>--%>
+    <li><p>站点名称：<%=sysConfig.web_name %></p></li>
+    <li><p>公司名称：<%=sysConfig.web_company %></p></li>
+    <li><p>附件上传目录：<%=sysConfig.file_path %></p></li>
     <li><p>服务器名称：<%=Server.MachineName%></p></li>
     <li><p>服务器IP：<%=Request.ServerVariables["LOCAL_ADDR"] %></p></li>
     <li><p>NET框架版本：<%=Environment.Version.ToString()%></p></li>
@@ -53,7 +53,7 @@
 </div>
 <div class="line20"></div>
 
-<div class="nlist-3">
+<%--<div class="nlist-3">
   <ul>
     <li><a onclick="parent.linkMenuTree(true, 'sys_config');" href="javascript:;"><i class="iconfont icon-setting"></i></a><span>系统设置</span></li>
     <li><a onclick="parent.linkMenuTree(true, 'sys_site_manage');" href="javascript:;"><i class="iconfont icon-site"></i></a><span>站点管理</span></li>
@@ -64,7 +64,7 @@
     <li><a onclick="parent.linkMenuTree(true, 'manager_list');" href="javascript:;"><i class="iconfont icon-manager"></i></a><span>管理员</span></li>
     <li><a onclick="parent.linkMenuTree(true, 'manager_log');" href="javascript:;"><i class="iconfont icon-log"></i></a><span>系统日志</span></li>
   </ul>
-</div>
+</div>--%>
 
 <div class="nlist-4">
   <h3><i class="iconfont icon-edit"></i>首页</h3>

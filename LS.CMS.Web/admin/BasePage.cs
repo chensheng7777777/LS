@@ -13,9 +13,10 @@ namespace LS.CMS.Web.admin
 {
     public class BasePage:System.Web.UI.Page
     {
-
+        protected ls_sysconfig sysConfig;
         public BasePage()
         {
+            sysConfig = new ls_sysconfig_bll().LoadConfig();
             this.Load += new EventHandler(BasePage_Load);
         }
 
