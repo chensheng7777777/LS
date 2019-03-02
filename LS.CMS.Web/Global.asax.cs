@@ -18,7 +18,7 @@ namespace LS.CMS.Web
         ISchedulerFactory factory;
         protected void Application_Start(object sender, EventArgs e)
         {
-            LogHelper.SaveNote("App Start...");
+            LogHelper.SaveNoteToLog("App Start...");
             //1、创建一个调度器
             factory = new StdSchedulerFactory();
             scheduler = factory.GetScheduler();
@@ -31,7 +31,7 @@ namespace LS.CMS.Web
             //DateTimeOffset runTime = DateBuilder.EvenMinuteDate(DateTimeOffset.UtcNow);
             ITrigger trigger = TriggerBuilder.Create()
                 .WithIdentity("trigger1", "group1")
-                .WithCronSchedule("0 0/2 * * * ? *")   
+                .WithCronSchedule("0/5 * * * * ?")   
                                                        //.StartAt(runTime)
                 .Build();
 

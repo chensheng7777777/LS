@@ -12,7 +12,7 @@ namespace LS.CMS.DBUtility
     public sealed class NHibernateHelper
     {
         private const string CurrentSessionKey = "ls.current_session";
-        private static readonly ISessionFactory _sessionFactory;
+        public static readonly ISessionFactory _sessionFactory;
 
         static NHibernateHelper()
         {

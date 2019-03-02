@@ -23,38 +23,38 @@ namespace LS.CMS.Model
         /// <summary>
         /// 编号
         /// </summary>
-        public int id { get; set; }
+        public virtual string id { get; set; }
         /// <summary>
         /// 用户id
         /// </summary>
-        public int user_id { get; set; }
+        public virtual int user_id { get; set; }
         /// <summary>
         /// 用户名
         /// </summary>
-        public string user_name { get; set; }
+        public virtual string user_name { get; set; }
         /// <summary>
         /// 用户ip
         /// </summary>
-        public string user_ip { get; set; }
+        public virtual string visit_ip { get; set; }
         /// <summary>
         /// 访问时间
         /// </summary>
-        public DateTime visit_time { get; set; }
+        public virtual DateTime visit_time { get; set; }
         /// <summary>
         /// 访问url
         /// </summary>
-        public string visit_url { get; set; }
+        public virtual string visit_url { get; set; }
         /// <summary>
         /// 用户地区
         /// </summary>
-        public string visit_area { get; set; }
+        public virtual string visit_area { get; set; }
         /// <summary>
         /// 用户操作系统
         /// </summary>
-        public string visit_os { get; set; }
+        public virtual string visit_os { get; set; }
         /// <summary>
         /// 用户浏览器
         /// </summary>
-        public string visit_browser { get; set; }
+        public virtual string visit_browser { get; set; }
     }
 }

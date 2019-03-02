@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+    namespace="LS.CMS.Model" assembly="LS.CMS.Model">
+
+  <class name="ls_visit_log" table="ls_visit_log">
+    <id name="id" column="id">
+      <generator class="uuid.hex"/>
+    </id>
+    <property name="user_id" column="user_id"></property>
+    <property name="user_name" column="user_name"></property>
+    <property name="visit_ip" column="visit_ip"></property>
+    <property name="visit_time" column="visit_time"></property>
+    <property name="visit_url" column="visit_url"></property>
+    <property name="visit_area" column="visit_area"></property>
+    <property name="visit_os" column="visit_os"></property>
+    <property name="visit_browser" column="visit_browser"></property>
+  </class>
+</hibernate-mapping>

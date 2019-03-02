@@ -15,7 +15,18 @@ namespace LS.CMS.Web.test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            int count=sql_analysis.GetDayCount(2019,3,1);
+            //int count=sql_analysis.GetDayCount(2019,3,1);
+            ls_visit_log_bll bll = new ls_visit_log_bll();
+            bll.SaveLogs(new List<ls_visit_log>() {
+                new ls_visit_log()
+                {
+                    user_id=1,
+                    user_name="1",
+                    visit_time=DateTime.Now,
+                    visit_url="123"
+                }
+            });
+
         }
     }
 }

@@ -78,7 +78,7 @@ namespace LS.CMS.Common
                 exNote += "Source：" + ex.Source + "</br>\r\n";
                 exNote += "StackTrace：" + ex.StackTrace + "</br>\r\n";
             }
-            FileStream stream = new FileStream(GetLogDirectory("Common") + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append, FileAccess.Write, FileShare.Delete | FileShare.ReadWrite);
+            FileStream stream = new FileStream(GetLogDirectory("Exception") + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append, FileAccess.Write, FileShare.Delete | FileShare.ReadWrite);
             StreamWriter writer = new StreamWriter(stream);
             writer.WriteLine("====");
             if (!string.IsNullOrWhiteSpace(note))
@@ -104,10 +104,15 @@ namespace LS.CMS.Common
         /// 保存日志
         /// </summary>
         /// <param name="note"></param>
-        public static void SaveNote(string note)
+        public static void SaveNoteToLog(string note)
         {
-
-            SaveNoteAndException(note, null);
+            FileStream stream = new FileStream(GetLogDirectory("Common") + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append, FileAccess.Write, FileShare.Delete | FileShare.ReadWrite);
+            StreamWriter writer = new StreamWriter(stream);
+            if (!string.IsNullOrWhiteSpace(note))
+                writer.WriteLine(string.Format("Note:{0},DateTime:{1}", note, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff")));
+            stream.Flush();
+            writer.Close();
+            stream.Close();
         }
     }
 }

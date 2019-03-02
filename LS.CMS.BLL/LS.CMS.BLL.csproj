@@ -45,6 +45,7 @@
     <Compile Include="ls_role_bll.cs" />
     <Compile Include="ls_sysconfig_bll.cs" />
     <Compile Include="ls_user_bll.cs" />
+    <Compile Include="ls_visit_log_bll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sql_analysis.cs" />
   </ItemGroup>

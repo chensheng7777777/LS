@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,112 +12,58 @@ namespace LS.CMS.Common
 {
     public class JSONHelper
     {
-        /// <summary> 
-        /// 对象转JSON 
-        /// </summary> 
-        /// <param name="obj">对象</param> 
-        /// <returns>JSON格式的字符串</returns> 
-        public static string ObjectToJSON(object obj)
+        /// <summary>
+        /// 将对象序列化为JSON格式
+        /// </summary>
+        /// <param name="o">对象</param>
+        /// <returns>json字符串</returns>
+        public static string SerializeObject(object o)
         {
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            try
-            {
-                byte[] b = Encoding.UTF8.GetBytes(jss.Serialize(obj));
-                return Encoding.UTF8.GetString(b);
-            }
-            catch (Exception ex)
-            {
-
-                throw new Exception("JSONHelper.ObjectToJSON(): " + ex.Message);
-            }
+            string json = JsonConvert.SerializeObject(o);
+            return json;
         }
 
-        /// <summary> 
-        /// 数据表转键值对集合
-        /// 把DataTable转成 List集合, 存每一行 
-        /// 集合中放的是键值对字典,存每一列 
-        /// </summary> 
-        /// <param name="dt">数据表</param> 
-        /// <returns>哈希表数组</returns> 
-        public static List<Dictionary<string, object>> DataTableToList(DataTable dt)
+        /// <summary>
+        /// 解析JSON字符串生成对象实体
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="json">json字符串(eg.{"ID":"112","Name":"石子儿"})</param>
+        /// <returns>对象实体</returns>
+        public static T DeserializeJsonToObject<T>(string json) where T : class
         {
-            List<Dictionary<string, object>> list
-                 = new List<Dictionary<string, object>>();
+            JsonSerializer serializer = new JsonSerializer();
+            StringReader sr = new StringReader(json);
+            object o = serializer.Deserialize(new JsonTextReader(sr), typeof(T));
+            T t = o as T;
+            return t;
+        }
 
-            foreach (DataRow dr in dt.Rows)
-            {
-                Dictionary<string, object> dic = new Dictionary<string, object>();
-                foreach (DataColumn dc in dt.Columns)
-                {
-                    dic.Add(dc.ColumnName, dr[dc.ColumnName]);
-                }
-                list.Add(dic);
-            }
+        /// <summary>
+        /// 解析JSON数组生成对象实体集合
+        /// </summary>
+        /// <typeparam name="T">对象类型</typeparam>
+        /// <param name="json">json数组字符串(eg.[{"ID":"112","Name":"石子儿"}])</param>
+        /// <returns>对象实体集合</returns>
+        public static List<T> DeserializeJsonToList<T>(string json) where T : class
+        {
+            JsonSerializer serializer = new JsonSerializer();
+            StringReader sr = new StringReader(json);
+            object o = serializer.Deserialize(new JsonTextReader(sr), typeof(List<T>));
+            List<T> list = o as List<T>;
             return list;
         }
 
-        /// <summary> 
-        /// 数据集转键值对数组字典 
-        /// </summary> 
-        /// <param name="dataSet">数据集</param> 
-        /// <returns>键值对数组字典</returns> 
-        public static Dictionary<string, List<Dictionary<string, object>>> DataSetToDic(DataSet ds)
+        /// <summary>
+        /// 反序列化JSON到给定的匿名对象.
+        /// </summary>
+        /// <typeparam name="T">匿名对象类型</typeparam>
+        /// <param name="json">json字符串</param>
+        /// <param name="anonymousTypeObject">匿名对象</param>
+        /// <returns>匿名对象</returns>
+        public static T DeserializeAnonymousType<T>(string json, T anonymousTypeObject)
         {
-            Dictionary<string, List<Dictionary<string, object>>> result = new Dictionary<string, List<Dictionary<string, object>>>();
-
-            foreach (DataTable dt in ds.Tables)
-                result.Add(dt.TableName, DataTableToList(dt));
-
-            return result;
-        }
-
-        /// <summary> 
-        /// 数据表转JSON 
-        /// </summary> 
-        /// <param name="dataTable">数据表</param> 
-        /// <returns>JSON字符串</returns> 
-        public static string DataTableToJSON(DataTable dt)
-        {
-            return ObjectToJSON(DataTableToList(dt));
-        }
-
-        /// <summary> 
-        /// JSON文本转对象,泛型方法 
-        /// </summary> 
-        /// <typeparam name="T">类型</typeparam> 
-        /// <param name="jsonText">JSON文本</param> 
-        /// <returns>指定类型的对象</returns> 
-        public static T JSONToObject<T>(string jsonText)
-        {
-            JavaScriptSerializer jss = new JavaScriptSerializer();
-            try
-            {
-                return jss.Deserialize<T>(jsonText);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("JSONHelper.JSONToObject(): " + ex.Message);
-            }
-        }
-
-        /// <summary> 
-        /// 将JSON文本转换为数据表数据 
-        /// </summary> 
-        /// <param name="jsonText">JSON文本</param> 
-        /// <returns>数据表字典</returns> 
-        public static Dictionary<string, List<Dictionary<string, object>>> TablesDataFromJSON(string jsonText)
-        {
-            return JSONToObject<Dictionary<string, List<Dictionary<string, object>>>>(jsonText);
-        }
-
-        /// <summary> 
-        /// 将JSON文本转换成数据行 
-        /// </summary> 
-        /// <param name="jsonText">JSON文本</param> 
-        /// <returns>数据行的字典</returns>
-        public static Dictionary<string, object> DataRowFromJSON(string jsonText)
-        {
-            return JSONToObject<Dictionary<string, object>>(jsonText);
+            T t = JsonConvert.DeserializeAnonymousType(json, anonymousTypeObject);
+            return t;
         }
     }
 }

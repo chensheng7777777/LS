@@ -52,10 +52,12 @@ namespace LS.CMS.Web.admin
                 user_name=GetUserInfo().user_name,
                 visit_time=DateTime.Now,
                 visit_url= HttpContext.Current.Request.Url.ToString(),
-                user_ip=Utils.GetIPAddress()
+                visit_ip=Utils.GetIPAddress(),
+                visit_browser=Utils.GetBrowser(),
+                visit_os=Utils.GetOSVersion()
             };
             MSMQHelper msmq = new MSMQHelper();
-            string msg = JSONHelper.ObjectToJSON(log);
+            string msg = JSONHelper.SerializeObject(log);
             LogHelper.SaveVisitToLog(msg);
             msmq.Send(msg);
         }

@@ -72,8 +72,14 @@ namespace LS.CMS.Common
                 allMessage[i].Formatter = formatter;
                 list.Add(allMessage[i].Body.ToString());
             }
-            _msmq.Purge();
             return list;
+        }
+        /// <summary>
+        /// 关闭消息管道
+        /// </summary>
+        public void Clear()
+        {
+            _msmq.Purge();
         }
         /// <summary>
         /// 释放消息队列实例

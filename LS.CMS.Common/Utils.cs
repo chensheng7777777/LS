@@ -1278,5 +1278,100 @@ namespace LS.CMS.Common
                     userIP = Request.UserHostAddress;
                 return userIP;
         }
+
+        #region 获取操作系统版本号
+
+        /// <summary> 
+        /// 获取操作系统版本号 
+        /// </summary> 
+        /// <returns></returns>
+        public static string GetOSVersion()
+        {
+            //UserAgent 
+            var userAgent = HttpContext.Current.Request.ServerVariables["HTTP_USER_AGENT"];
+
+            var osVersion = "未知";
+            if (userAgent.Contains("NT 10.0"))
+            {
+                osVersion = "Windows 10";
+            }
+            else if (userAgent.Contains("NT 6.3"))
+            {
+                osVersion = "Windows 8.1";
+            }
+            else if (userAgent.Contains("NT 6.2"))
+            {
+                osVersion = "Windows 8";
+            }
+
+            else if (userAgent.Contains("NT 6.1"))
+            {
+                osVersion = "Windows 7";
+            }
+            else if (userAgent.Contains("NT 6.0"))
+            {
+                osVersion = "Windows Vista/Server 2008";
+            }
+            else if (userAgent.Contains("NT 5.2"))
+            {
+                osVersion = "Windows Server 2003";
+            }
+            else if (userAgent.Contains("NT 5.1"))
+            {
+                osVersion = "Windows XP";
+            }
+            else if (userAgent.Contains("NT 5"))
+            {
+                osVersion = "Windows 2000";
+            }
+            else if (userAgent.Contains("NT 4"))
+            {
+                osVersion = "Windows NT4";
+            }
+            else if (userAgent.Contains("Me"))
+            {
+                osVersion = "Windows Me";
+            }
+            else if (userAgent.Contains("98"))
+            {
+                osVersion = "Windows 98";
+            }
+            else if (userAgent.Contains("95"))
+            {
+                osVersion = "Windows 95";
+            }
+            else if (userAgent.Contains("Mac"))
+            {
+                osVersion = "Mac";
+            }
+            else if (userAgent.Contains("Unix"))
+            {
+                osVersion = "UNIX";
+            }
+            else if (userAgent.Contains("Linux"))
+            {
+                osVersion = "Linux";
+            }
+            else if (userAgent.Contains("SunOS"))
+            {
+                osVersion = "SunOS";
+            }
+            return osVersion;
+        }
+        #endregion
+
+        #region 获取浏览器版本号
+
+        /// <summary> 
+        /// 获取浏览器版本号 
+        /// </summary> 
+        /// <returns></returns> 
+        public static string GetBrowser()
+        {
+            HttpBrowserCapabilities bc = HttpContext.Current.Request.Browser;
+            return bc.Browser + bc.Version;
+        }
+
+        #endregion
     }
 }

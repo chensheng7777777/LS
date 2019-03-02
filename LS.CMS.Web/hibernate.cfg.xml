@@ -11,7 +11,7 @@
     <!-- 数据库驱动类 -->
     <property name="connection.driver_class">NHibernate.Driver.SqlClientDriver</property>
     <!-- 最多一次批处理SQL语句的数量 -->
-    <property name="adonet.batch_size">10</property>
+    <property name="adonet.batch_size">120</property>
     <!-- 是否展示SQL语句 -->
     <property name="show_sql">true</property>
     <!-- 格式化sql语句 -->

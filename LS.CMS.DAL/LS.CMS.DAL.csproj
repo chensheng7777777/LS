@@ -63,6 +63,7 @@
     <Compile Include="ls_role_dal.cs" />
     <Compile Include="ls_sysconfig_dal.cs" />
     <Compile Include="ls_user_dal.cs" />
+    <Compile Include="ls_visit_log_dal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
