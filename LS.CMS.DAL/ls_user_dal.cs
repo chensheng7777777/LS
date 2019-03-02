@@ -96,26 +96,42 @@ namespace LS.CMS.DAL
         /// <returns></returns>
         public IList<ls_user> GetPagedUserList(int pageIndex, int pageSize, string name, string startTime, string endTime, out int totalCount)
         {
+            //ICriteria criteria = db.CreateCriteria(typeof(ls_user));
+            //Disjunction dis = Restrictions.Disjunction();
+            //if (!string.IsNullOrEmpty(name))
+            //{
+            //    dis.Add(Restrictions.Like("user_name","%"+name+"%"));
+            //}
+            //if (!string.IsNullOrEmpty(startTime))
+            //{
+            //    dis.Add(Restrictions.Gt("create_time",Convert.ToDateTime(startTime)));
+            //}
+            //if (!string.IsNullOrEmpty(endTime))
+            //{
+            //    dis.Add(Restrictions.Lt("create_time", Convert.ToDateTime(endTime)));
+            //}
+            //criteria.Add(dis);
+            //totalCount=(int)criteria.SetProjection(Projections.RowCount()).UniqueResult();
+            //criteria.SetFirstResult(pageIndex*pageSize);
+            //criteria.SetMaxResults(pageSize);
+            //return criteria.List<ls_user>();
             ICriteria criteria = db.CreateCriteria(typeof(ls_user));
-            Disjunction dis = Restrictions.Disjunction();
             if (!string.IsNullOrEmpty(name))
             {
-                dis.Add(Restrictions.Like("user_name","%"+name+"%"));
+                criteria.Add(Restrictions.Like("user_name","%"+name+"%"));
             }
             if (!string.IsNullOrEmpty(startTime))
             {
-                dis.Add(Restrictions.Gt("create_time",Convert.ToDateTime(startTime)));
+                criteria.Add(Restrictions.Gt("create_time",startTime));
             }
             if (!string.IsNullOrEmpty(endTime))
             {
-                dis.Add(Restrictions.Lt("create_time", Convert.ToDateTime(endTime)));
+                criteria.Add(Restrictions.Lt("create_time",endTime));
             }
-            criteria.Add(dis);
             totalCount=(int)criteria.SetProjection(Projections.RowCount()).UniqueResult();
             criteria.SetFirstResult(pageIndex*pageSize);
             criteria.SetMaxResults(pageSize);
             return criteria.List<ls_user>();
-
         }
 
     }

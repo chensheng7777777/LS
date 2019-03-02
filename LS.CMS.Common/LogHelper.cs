@@ -43,10 +43,22 @@ namespace LS.CMS.Common
         {
             FileStream stream = new FileStream(GetLogDirectory("SQL") + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append, FileAccess.Write, FileShare.Delete | FileShare.ReadWrite);
             StreamWriter writer = new StreamWriter(stream);
-            writer.WriteLine("====");
             if (!string.IsNullOrWhiteSpace(sql))
-                writer.WriteLine(string.Format("Note:{0}", sql));
-            writer.WriteLine(string.Format("DateTime:{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff")));
+                writer.WriteLine(string.Format("Sql:{0},DateTime:{1}", sql, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff")));
+            stream.Flush();
+            writer.Close();
+            stream.Close();
+        }
+        /// <summary>
+        /// 将访问记录保存到日志中
+        /// </summary>
+        /// <param name="visit"></param>
+        public static void SaveVisitToLog(string visit)
+        {
+            FileStream stream = new FileStream(GetLogDirectory("VISIT") + DateTime.Now.ToString("yyyy-MM-dd") + ".txt", FileMode.Append, FileAccess.Write, FileShare.Delete | FileShare.ReadWrite);
+            StreamWriter writer = new StreamWriter(stream);
+            if (!string.IsNullOrWhiteSpace(visit))
+                writer.WriteLine(string.Format("Visit:{0},DateTime:{1}", visit, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:ffff")));
             stream.Flush();
             writer.Close();
             stream.Close();

@@ -23,7 +23,7 @@ namespace LS.CMS.Web.admin
         protected void BasePage_Load(object sender,EventArgs e)
         {
 #if DEBUG
-            HttpContext.Current.Session[LSKeys.SESSION_USER_INFO] = new ls_user_bll().Login("ccc","123");
+            HttpContext.Current.Session[LSKeys.SESSION_USER_INFO] = new ls_user_bll().GetCookieUser("chensheng","1234");
 #endif
 
             if (!IsLogin())
@@ -34,8 +34,30 @@ namespace LS.CMS.Web.admin
             //判断是否有访问本页面的权限
             //如果没有跳转的话,记录访问日志(访问日志向队列中推送),在全局任务调度中每60秒完成一次批量写入
             //目前首先记录到数据库中
-            Uri uri = HttpContext.Current.Request.Url;
+            VisitLog();
 
+
+
+        }
+
+        /// <summary>
+        /// 记录用户访问日志
+        /// </summary>
+        protected void VisitLog()
+        {
+            //抛出localhost部分(当做分布式时需要将主机以及端口记录)
+            ls_visit_log log = new ls_visit_log()
+            {
+                user_id= GetUserInfo().id,
+                user_name=GetUserInfo().user_name,
+                visit_time=DateTime.Now,
+                visit_url= HttpContext.Current.Request.Url.ToString(),
+                user_ip=Utils.GetIPAddress()
+            };
+            MSMQHelper msmq = new MSMQHelper();
+            string msg = JSONHelper.ObjectToJSON(log);
+            LogHelper.SaveVisitToLog(msg);
+            msmq.Send(msg);
         }
 
 
