@@ -23,7 +23,7 @@ namespace LS.CMS.Web.admin
         protected void BasePage_Load(object sender,EventArgs e)
         {
 #if DEBUG
-            HttpContext.Current.Session[LSKeys.SESSION_USER_INFO] = new ls_user_bll().GetCookieUser("chensheng","1234");
+            HttpContext.Current.Session[LSKeys.SESSION_USER_INFO] = new ls_user_bll().GetCookieUser("chensheng", "1234");
 #endif
 
             if (!IsLogin())
@@ -161,6 +161,28 @@ namespace LS.CMS.Web.admin
             sb.Append("]");
         }
 
-
+        #region JS提示============================================
+        /// <summary>
+        /// 添加编辑删除提示
+        /// </summary>
+        /// <param name="msgtitle">提示文字</param>
+        /// <param name="url">返回地址</param>
+        protected void JscriptMsg(string msgtitle, string url)
+        {
+            string msbox = "parent.jsprint(\"" + msgtitle + "\", \"" + url + "\")";
+            ClientScript.RegisterClientScriptBlock(Page.GetType(), "JsPrint", msbox, true);
+        }
+        /// <summary>
+        /// 带回传函数的添加编辑删除提示
+        /// </summary>
+        /// <param name="msgtitle">提示文字</param>
+        /// <param name="url">返回地址</param>
+        /// <param name="callback">JS回调函数</param>
+        protected void JscriptMsg(string msgtitle, string url, string callback)
+        {
+            string msbox = "parent.jsprint(\"" + msgtitle + "\", \"" + url + "\", " + callback + ")";
+            ClientScript.RegisterClientScriptBlock(Page.GetType(), "JsPrint", msbox, true);
+        }
+        #endregion
     }
 }

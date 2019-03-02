@@ -164,7 +164,9 @@ textarea.input{ width:300px; height:65px; }
 	.toolbar .l-list{ display:block; }
 	.toolbar .l-list .icon-list{ float:left; display:block; margin:0 10px 0 1px; padding-bottom:5px; }
 	.toolbar .l-list .icon-list:after{clear:both;content:".";display:block;height:0;visibility:hidden;}
-	.toolbar .l-list .icon-list li{ float:left; }
+	.toolbar .l-list .icon-list li{ float:left;
+    height: 20px;
+}
 	.toolbar .l-list .icon-list li a{ display:inline-block; margin:0 0 -1px -1px; padding:5px 10px 5px 8px; line-height:20px; height:20px; border:solid 1px #eee; color:#2b2b2b; font-size:12px; text-decoration:none; background:#fafafa; white-space:nowrap; word-break:break-all; }
 	.toolbar .l-list .icon-list li a:hover{ color:#267cb7; text-decoration:none; }
 	.toolbar .l-list .icon-list li a span{ display:inline-block; }

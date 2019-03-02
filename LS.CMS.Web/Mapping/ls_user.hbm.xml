@@ -10,6 +10,7 @@
     <property name="user_mobile" column="user_mobile"></property>
     <property name="user_password" column="user_password"></property>
     <property name="user_salt" column="user_salt"></property>
+    <property name="user_gender" column="user_gender"></property>
     <property name="user_avatar" column="user_avatar"></property>
     <property name="user_birth" column="user_birth"></property>
     <property name="nick_name" column="nick_name"></property>

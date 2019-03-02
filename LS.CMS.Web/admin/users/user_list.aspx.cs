@@ -30,11 +30,15 @@ namespace LS.CMS.Web.admin.users
         /// <summary>
         /// 绑定数据
         /// </summary>
-        protected void BindUserList()
+        protected void BindUserList(string pageIndex=null)
         {
             string startTime = txtStartTime.Text;
             string endTime = txtEndTime.Text;
             this.page = LSRequest.GetQueryInt("page",1);
+            if (!string.IsNullOrEmpty(pageIndex))
+            {
+                this.page = Convert.ToInt32(pageIndex);
+            }
             this.pageSize = GetPageSize(10);
             string name = txtKeywords.Text;
             int role_id = Utils.StrToInt(this.ddlRole.SelectedValue, 0);
@@ -44,7 +48,8 @@ namespace LS.CMS.Web.admin.users
             //为Repeater绑定数据
             rptList.DataSource = users;
             rptList.DataBind();
-
+            string pageUrl = Utils.CombUrlTxt("user_list.aspx","page={0}", "__id__");
+            PageContent.InnerHtml = Utils.OutPageList(this.pageSize, this.page, totalCount, pageUrl, 8);
         }
 
 
@@ -118,7 +123,42 @@ namespace LS.CMS.Web.admin.users
 
         protected void lbtnSearch_Click(object sender, EventArgs e)
         {
-            BindUserList();
+            //如果是点击搜索,那么需要回到第一页
+            BindUserList("1");
+        }
+
+        protected void ddlRole_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BindUserList("1");
+        }
+        /// <summary>
+        /// 删除按钮点击事件
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void btnDelete_Click(object sender, EventArgs e)
+        {
+            List<int> ids = new List<int>();
+            for (int i=0;i<rptList.Items.Count;i++)
+            {
+                CheckBox cb = (CheckBox)rptList.Items[i].FindControl("chkId");
+                HiddenField hf = (HiddenField)rptList.Items[i].FindControl("hidId");
+                if (cb.Checked)
+                {
+                    ids.Add(Convert.ToInt32(hf.Value));
+                }
+            }
+            ls_user_bll userBLL = new ls_user_bll();
+            if (userBLL.DeleteUsers(ids))
+            {
+                
+                JscriptMsg("删除成功", Utils.CombUrlTxt("user_list.aspx","page={0}",this.page.ToString()));
+                
+            }
+            else
+            {
+                JscriptMsg("删除失败","");
+            }
         }
     }
 }

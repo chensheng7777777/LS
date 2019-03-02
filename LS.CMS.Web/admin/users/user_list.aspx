@@ -40,13 +40,13 @@
       <a class="menu-btn"><i class="iconfont icon-more"></i></a>
       <div class="l-list">
         <ul class="icon-list">
-          <li><a href="user_edit.aspx?action=<%=LSEnums.ActionEnum.Add %>"><i class="iconfont icon-close"></i><span>新增</span></a></li>
+          <li><a href="user_add.aspx?action=<%=LSEnums.ActionEnum.Add %>"><i class="iconfont icon-close"></i><span>新增</span></a></li>
           <li><a href="javascript:;" onclick="checkAll(this);"><i class="iconfont icon-check"></i><span>全选</span></a></li>
-          <li><asp:LinkButton ID="btnDelete" runat="server" OnClientClick="return ExePostBack('btnDelete');" ><i class="iconfont icon-delete"></i><span>删除</span></asp:LinkButton></li>
+          <li><asp:LinkButton ID="btnDelete" runat="server" OnClientClick="return ExePostBack('btnDelete');" onclick="btnDelete_Click" ><i class="iconfont icon-delete"></i><span>删除</span></asp:LinkButton></li>
         </ul>
         <div class="menu-list">
           <div class="rule-single-select">
-            <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="True" ></asp:DropDownList>
+            <asp:DropDownList ID="ddlRole" runat="server" AutoPostBack="True" OnSelectedIndexChanged="ddlRole_SelectedIndexChanged" ></asp:DropDownList>
           </div>
           <asp:TextBox ID="txtStartTime" runat="server" CssClass="input rule-date-input" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})"></asp:TextBox>
           -
@@ -90,7 +90,7 @@
     <td>
       <div class="user-box">
         <h4><b><%#Eval("user_name")%></b> (昵称：<%#Eval("nick_name")%>)</h4>
-        <i>注册时间：<%#string.Format("{0:g}",Eval("create_time"))%></i><span><a class="amount" href="amount_log.aspx?keywords=<%#Eval("id")%>" title="登录记录"><i class="iconfont icon-count"></i></a><a class="card" href="recharge_list.aspx?keywords=<%#Eval("id")%>" title="访问记录"><i class="iconfont icon-order"></i></a><%#Utils.ObjectToStr(Eval("user_mobile")) != "" ? "<a class=\"sms\" href=\"javascript:;\" onclick=\"PostSMS('" + Eval("mobile") + "');\" title=\"发送手机短信通知\"><i class=\"iconfont icon-mail\"></i></a>" : ""%></span></div>
+        <i>注册时间：<%#string.Format("{0:g}",Eval("create_time"))%></i><span><a class="amount" href="amount_log.aspx?keywords=<%#Eval("id")%>" title="登录记录"><i class="iconfont icon-count"></i></a><a class="card" href="recharge_list.aspx?keywords=<%#Eval("id")%>" title="访问记录"><i class="iconfont icon-order"></i></a><%#Utils.ObjectToStr(Eval("user_mobile")) != "" ? "<a class=\"sms\" href=\"javascript:;\" onclick=\"PostSMS('" + Eval("user_mobile") + "');\" title=\"发送手机短信通知\"><i class=\"iconfont icon-mail\"></i></a>" : ""%></span></div>
     </td>
     <td><%#Eval("user_email")%></td>
     <td><%#Eval("user_mobile")%></td>

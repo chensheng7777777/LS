@@ -8,6 +8,8 @@ using LS.CMS.DBUtility;
 using NHibernate;
 using LS.CMS.Common;
 using NHibernate.Criterion;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace LS.CMS.DAL
 {
@@ -47,6 +49,79 @@ namespace LS.CMS.DAL
                 return (string)obj;
             }
         }
+        /// <summary>
+        /// 根据id获取用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ls_user GetUserById(int id)
+        {
+            return db.Load<ls_user>(id);
+        }
+
+        /// <summary>
+        /// 使用hql更新
+        /// </summary>
+        /// <param name="usr"></param>
+        public void UpdateUser(ls_user usr)
+        {
+            IQuery query = db.CreateQuery("update ls_user set user_email=:user_email,nick_name=:nick_name,user_status=:user_status,user_mobile=:user_mobile,user_gender=:user_gender,user_birth=:user_birth where id=:id");
+            query.SetString("user_email", usr.user_email);
+            query.SetString("nick_name", usr.nick_name);
+            query.SetInt32("user_status", usr.user_status);
+            query.SetString("user_mobile", usr.user_mobile);
+            query.SetInt32("user_gender", usr.user_gender);
+            query.SetParameter("user_birth",usr.user_birth);
+            query.SetInt32("id",usr.id);
+            query.ExecuteUpdate();
+        }
+
+        /// <summary>
+        /// 判断用户名是否存在
+        /// </summary>
+        /// <param name="userName">用户名</param>
+        /// <returns>是否存在</returns>
+        public bool IsUserNameExist(string userName)
+        {
+            string sql = "select count(1) from dbo.ls_user where user_name=@user_name";
+            SqlParameter[] parameters = 
+            {
+                new SqlParameter("@user_name",userName)
+            };
+            int result = 0;
+            try
+            {
+                result = (int)SqlHelper.ExecuteScalar(SqlHelper.CMS_CONNECTIONSTRING, CommandType.Text, sql, parameters);
+            }
+            catch (Exception e)
+            {
+                LogHelper.SaveException(e);
+            }
+            return result > 0;
+        }
+
+
+        public bool IsUserNameExists(string userName)
+        {
+            ICriteria criteria = db.CreateCriteria(typeof(ls_user));
+            criteria.Add(Restrictions.Eq("user_name",userName));
+            return ((int)criteria.SetProjection(Projections.RowCount()).UniqueResult()>0);
+        }
+
+
+        /// <summary>
+        /// 保存用户
+        /// </summary>
+        /// <param name="usr"></param>
+        /// <returns></returns>
+        public ls_user SaveUser(ls_user usr)
+        {
+            object id=db.Save(usr);
+            usr.id = (int)id;
+            return usr;
+        }
+
+
 
         /// <summary>
         /// 根据登录名密码获取用户
@@ -81,6 +156,36 @@ namespace LS.CMS.DAL
             }
             criteria.Add(Expression.Eq("user_password",loginPwd));
             return criteria.UniqueResult<ls_user>();
+        }
+
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public bool DeleteUsers(List<int> ids)
+        {
+            bool result = false;
+            ITransaction tran=db.BeginTransaction();
+            try
+            {
+                foreach (int id in ids)
+                {
+                    db.Delete(new ls_user() {id=id });
+                }
+                tran.Commit();
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.SaveException(ex);
+                tran.Rollback();
+            }
+            finally
+            {
+                tran.Dispose();
+            }
+            return result;
         }
 
 
@@ -132,10 +237,11 @@ namespace LS.CMS.DAL
             if (role_id>0)
             {
                 criteria.CreateAlias("user_roles", "t2");
-                criteria.Add(Restrictions.Eq("t2.id", 12));
+                criteria.Add(Restrictions.Eq("t2.id", role_id));
             }
             ICriteria totalCriteria = (ICriteria)criteria.Clone();
             totalCount = (int)totalCriteria.SetProjection(Projections.RowCount()).UniqueResult();
+            criteria.AddOrder(Order.Desc("id"));
             criteria.SetFirstResult((pageIndex - 1) * pageSize);
             criteria.SetMaxResults(pageSize);
             return criteria.List<ls_user>();

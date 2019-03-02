@@ -14,7 +14,13 @@ namespace LS.CMS.DBUtility
     {
         #region 私有构造函数和方法
 
-        private SqlHelper() { }
+        public static string CMS_CONNECTIONSTRING;
+
+
+       static SqlHelper()
+        {
+            CMS_CONNECTIONSTRING = ConfigurationManager.ConnectionStrings["cms"].ConnectionString;
+        }
 
         /// <summary> 
         /// 将SqlParameter参数数组(参数值)分配给SqlCommand命令. 

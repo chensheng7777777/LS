@@ -96,6 +96,7 @@
     <Content Include="admin\js\common.js" />
     <Content Include="admin\js\index.js" />
     <Content Include="admin\js\main.js" />
+    <Content Include="admin\js\uploader.js" />
     <Content Include="admin\skin\icon\iconfont.eot" />
     <Content Include="admin\skin\icon\iconfont.ttf" />
     <Content Include="admin\skin\icon\iconfont.woff" />
@@ -103,12 +104,16 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <Content Include="admin\users\user_add.aspx" />
+    <Content Include="admin\users\user_edit.aspx" />
     <Content Include="admin\users\user_list.aspx" />
     <Content Include="App_Data\sys.config" />
     <None Include="job_scheduling_data_2_0.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <Content Include="tools\admin_ajax.ashx" />
+    <Content Include="tools\upload_ajax.ashx" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -308,6 +313,20 @@
     <Compile Include="admin\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="admin\users\user_add.aspx.cs">
+      <DependentUpon>user_add.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\users\user_add.aspx.designer.cs">
+      <DependentUpon>user_add.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\users\user_edit.aspx.cs">
+      <DependentUpon>user_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\users\user_edit.aspx.designer.cs">
+      <DependentUpon>user_edit.aspx</DependentUpon>
+    </Compile>
     <Compile Include="admin\users\user_list.aspx.cs">
       <DependentUpon>user_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -326,6 +345,12 @@
     </Compile>
     <Compile Include="test\testNH.aspx.designer.cs">
       <DependentUpon>testNH.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="tools\admin_ajax.ashx.cs">
+      <DependentUpon>admin_ajax.ashx</DependentUpon>
+    </Compile>
+    <Compile Include="tools\upload_ajax.ashx.cs">
+      <DependentUpon>upload_ajax.ashx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

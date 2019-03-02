@@ -58,7 +58,14 @@ namespace LS.CMS.DAL
                 {
                     if (tran!=null)
                     {
-                        tran.Dispose();
+                        try
+                        {
+                            tran.Dispose();
+                        }
+                        catch (Exception ex)
+                        {
+                            LogHelper.SaveException(ex);
+                        }
                     }
                 }
             }

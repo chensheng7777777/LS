@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 *{ padding:0; margin:0; font-family:"Microsoft YaHei"; }
 html, body, div, span, applet, object, iframe,
@@ -9,7 +9,15 @@ small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
-time, mark, audio, video{ margin:0; padding:0; border:0; font-size:100%; text-decoration:none; }
+time, mark, audio, video{ border-style: none;
+    border-color: inherit;
+    border-width: 0;
+    padding: 0;
+    font-size:100%; text-decoration:none;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+}
 html { line-height:1; }
 q, blockquote { quotes:none; }
 q:before, q:after, blockquote:before, blockquote:after { content:""; content:none; }

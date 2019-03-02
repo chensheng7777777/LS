@@ -51,7 +51,7 @@
                         <%}%>
                     </h4>
                     <span>您好<br />
-                        <%=UserInfo.user_name%>
+                        <%=UserInfo.nick_name%>
                     </span>
                 </div>
                 <div class="option">

@@ -38,6 +38,51 @@ namespace LS.CMS.BLL
             }
             return result;
         }
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
+        public bool DeleteUsers(List<int> ids)
+        {
+            return userdal.DeleteUsers(ids);
+        }
+
+        /// <summary>
+        /// 根据id获取用户
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ls_user GetUserById(int id)
+        {
+            return userdal.GetUserById(id);
+        }
+
+        public void UpdateUser(ls_user usr)
+        {
+            userdal.UpdateUser(usr);
+        }
+
+
+        /// <summary>
+        /// 判断用户名是否存在
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <returns></returns>
+        public bool IsUserNameExist(string userName)
+        {
+            return userdal.IsUserNameExists(userName);
+        }
+        /// <summary>
+        /// 保存用户
+        /// </summary>
+        /// <param name="usr"></param>
+        /// <returns></returns>
+        public bool SaveUser(ls_user usr)
+        {
+            return userdal.SaveUser(usr).id>0;
+        }
+
 
         /// <summary>
         /// 登录
