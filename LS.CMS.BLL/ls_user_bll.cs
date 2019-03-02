@@ -62,9 +62,9 @@ namespace LS.CMS.BLL
         }
 
 
-        public IList<ls_user> GetPagedUserList(int pageIndex,int pageSize,string name,string startTime,string endTime,out int totalCount)
+        public IList<ls_user> GetPagedUserList(int pageIndex,int pageSize,string name,string startTime,string endTime,int role_id,out int totalCount)
         {
-            return userdal.GetPagedUserList(pageIndex,pageSize,name,startTime,endTime,out totalCount);
+            return userdal.GetPagedUserList(pageIndex,pageSize,name,startTime,endTime,role_id,out totalCount);
         }
 
 

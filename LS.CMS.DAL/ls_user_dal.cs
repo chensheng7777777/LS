@@ -94,7 +94,7 @@ namespace LS.CMS.DAL
         /// <param name="endTime"></param>
         /// <param name=""></param>
         /// <returns></returns>
-        public IList<ls_user> GetPagedUserList(int pageIndex, int pageSize, string name, string startTime, string endTime, out int totalCount)
+        public IList<ls_user> GetPagedUserList(int pageIndex, int pageSize, string name, string startTime, string endTime, int role_id,out int totalCount)
         {
             //ICriteria criteria = db.CreateCriteria(typeof(ls_user));
             //Disjunction dis = Restrictions.Disjunction();
@@ -115,21 +115,28 @@ namespace LS.CMS.DAL
             //criteria.SetFirstResult(pageIndex*pageSize);
             //criteria.SetMaxResults(pageSize);
             //return criteria.List<ls_user>();
-            ICriteria criteria = db.CreateCriteria(typeof(ls_user));
+            ICriteria criteria = db.CreateCriteria(typeof(ls_user),"t1");
+           
             if (!string.IsNullOrEmpty(name))
             {
-                criteria.Add(Restrictions.Like("user_name","%"+name+"%"));
+                criteria.Add(Restrictions.Like("user_name", "%" + name + "%"));
             }
             if (!string.IsNullOrEmpty(startTime))
             {
-                criteria.Add(Restrictions.Gt("create_time",startTime));
+                criteria.Add(Restrictions.Gt("create_time", Convert.ToDateTime(startTime)));
             }
             if (!string.IsNullOrEmpty(endTime))
             {
-                criteria.Add(Restrictions.Lt("create_time",endTime));
+                criteria.Add(Restrictions.Lt("create_time", Convert.ToDateTime(endTime)));
             }
-            totalCount=(int)criteria.SetProjection(Projections.RowCount()).UniqueResult();
-            criteria.SetFirstResult(pageIndex*pageSize);
+            if (role_id>0)
+            {
+                criteria.CreateAlias("user_roles", "t2");
+                criteria.Add(Restrictions.Eq("t2.id", 12));
+            }
+            ICriteria totalCriteria = (ICriteria)criteria.Clone();
+            totalCount = (int)totalCriteria.SetProjection(Projections.RowCount()).UniqueResult();
+            criteria.SetFirstResult((pageIndex - 1) * pageSize);
             criteria.SetMaxResults(pageSize);
             return criteria.List<ls_user>();
         }

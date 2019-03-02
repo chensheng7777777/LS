@@ -36,11 +36,13 @@ namespace LS.CMS.Web.admin.users
             this.page = LSRequest.GetQueryInt("page",1);
             this.pageSize = GetPageSize(10);
             string name = txtKeywords.Text;
-
+            int role_id = Utils.StrToInt(this.ddlRole.SelectedValue, 0);
             int totalCount;
-            var models = new ls_user_bll().GetPagedUserList(2,10, "cs", "2018-01-01", endTime, out totalCount);
+            IList<ls_user> users = new ls_user_bll().GetPagedUserList(this.page,this.pageSize, name, startTime, endTime, role_id,out totalCount);
 
-           
+            //为Repeater绑定数据
+
+
         }
 
 

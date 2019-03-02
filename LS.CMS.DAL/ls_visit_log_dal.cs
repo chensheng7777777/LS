@@ -54,6 +54,13 @@ namespace LS.CMS.DAL
                     LogHelper.SaveException(ex);
                     tran.Rollback();
                 }
+                finally
+                {
+                    if (tran!=null)
+                    {
+                        tran.Dispose();
+                    }
+                }
             }
             return false;
         }
