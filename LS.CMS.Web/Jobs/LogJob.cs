@@ -25,7 +25,6 @@ namespace LS.CMS.Web.Jobs
             {
                 logs.Add(JSONHelper.DeserializeJsonToObject<ls_visit_log>(item));
             }
-
             if (bll.SaveLogs(logs))
             {
                 msmq.Clear();

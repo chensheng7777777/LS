@@ -8,6 +8,7 @@ using NHibernate;
 using LS.CMS.DBUtility;
 using LS.CMS.Model;
 using LS.CMS.BLL;
+using LS.CMS.Common;
 
 namespace LS.CMS.Web.test
 {
@@ -15,18 +16,9 @@ namespace LS.CMS.Web.test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //int count=sql_analysis.GetDayCount(2019,3,1);
-            ls_visit_log_bll bll = new ls_visit_log_bll();
-            bll.SaveLogs(new List<ls_visit_log>() {
-                new ls_visit_log()
-                {
-                    user_id=1,
-                    user_name="1",
-                    visit_time=DateTime.Now,
-                    visit_url="123"
-                }
-            });
-
+            RedisHelper helper = new RedisHelper();
+            helper.Insert("1", "cccc");
+            var model = helper.Get("1");
         }
     }
 }
