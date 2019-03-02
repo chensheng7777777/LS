@@ -20,6 +20,7 @@ namespace LS.CMS.Web.admin.users
         {
             if (!IsPostBack)
             {
+                BindPageSizeTxt();
                 BindRoleDropDownList();
                 BindUserList();
             }
@@ -41,8 +42,15 @@ namespace LS.CMS.Web.admin.users
             IList<ls_user> users = new ls_user_bll().GetPagedUserList(this.page,this.pageSize, name, startTime, endTime, role_id,out totalCount);
 
             //为Repeater绑定数据
+            rptList.DataSource = users;
+            rptList.DataBind();
+
+        }
 
 
+        protected void BindPageSizeTxt()
+        {
+            this.txtPageNum.Text = GetPageSize(10).ToString();
         }
 
 
@@ -105,6 +113,12 @@ namespace LS.CMS.Web.admin.users
                     this.pageSize = _pageSize;
                 }
             }
+            BindUserList();
+        }
+
+        protected void lbtnSearch_Click(object sender, EventArgs e)
+        {
+            BindUserList();
         }
     }
 }

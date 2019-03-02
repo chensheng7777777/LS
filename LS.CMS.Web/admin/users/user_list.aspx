@@ -55,14 +55,55 @@
       </div>
       <div class="r-list">
         <asp:TextBox ID="txtKeywords" runat="server" CssClass="keyword" />
-        <asp:LinkButton ID="lbtnSearch" runat="server" CssClass="btn-search" ><i class="iconfont icon-search"></i></asp:LinkButton>
+        <asp:LinkButton ID="lbtnSearch" runat="server" CssClass="btn-search" OnClick="lbtnSearch_Click" ><i class="iconfont icon-search"></i></asp:LinkButton>
       </div>
     </div>
   </div>
 </div>
 <!--/工具栏-->
 
-
+    <!-- 用户列表 -->
+    <div class="table-container">
+<asp:Repeater ID="rptList" runat="server">
+<HeaderTemplate>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ltable">
+  <tr>
+    <th width="8%">选择</th>
+    <th align="left" colspan="2">用户名</th>
+    <th align="left" width="12%">邮箱</th>
+    <th width="8%">手机</th>
+    <th width="8%">性别</th>
+    <th width="8%">操作</th>
+  </tr>
+</HeaderTemplate>
+<ItemTemplate>
+  <tr>
+    <td align="center">
+      <asp:CheckBox ID="chkId" CssClass="checkall" runat="server" style="vertical-align:middle;" />
+      <asp:HiddenField ID="hidId" Value='<%#Eval("id")%>' runat="server" />
+    </td>
+    <td width="64">
+      <a class="user-avatar" href="user_edit.aspx?action=<%#LSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">
+        <%#Utils.ObjectToStr(Eval("user_avatar")) != "" ? "<img width=\"64\" height=\"64\" src=\"" + Eval("user_avatar") + "\" />" : "<i class=\"iconfont icon-user-full\"></i>"%>
+      </a>
+    </td>
+    <td>
+      <div class="user-box">
+        <h4><b><%#Eval("user_name")%></b> (昵称：<%#Eval("nick_name")%>)</h4>
+        <i>注册时间：<%#string.Format("{0:g}",Eval("create_time"))%></i><span><a class="amount" href="amount_log.aspx?keywords=<%#Eval("id")%>" title="登录记录"><i class="iconfont icon-count"></i></a><a class="card" href="recharge_list.aspx?keywords=<%#Eval("id")%>" title="访问记录"><i class="iconfont icon-order"></i></a><%#Utils.ObjectToStr(Eval("user_mobile")) != "" ? "<a class=\"sms\" href=\"javascript:;\" onclick=\"PostSMS('" + Eval("mobile") + "');\" title=\"发送手机短信通知\"><i class=\"iconfont icon-mail\"></i></a>" : ""%></span></div>
+    </td>
+    <td><%#Eval("user_email")%></td>
+    <td><%#Eval("user_mobile")%></td>
+    <td align="center"><%#Utils.ObjectToStr(Eval("user_gender"))=="0"?"男":"女"%></td>
+    <td align="center"><a href="user_edit.aspx?action=<%#LSEnums.ActionEnum.Edit %>&id=<%#Eval("id")%>">修改</a></td>
+  </tr>
+</ItemTemplate>
+<FooterTemplate>
+  <%#rptList.Items.Count == 0 ? "<tr><td align=\"center\" colspan=\"9\">暂无记录</td></tr>" : ""%>
+</table>
+</FooterTemplate>
+</asp:Repeater>
+</div>
 
 
 
@@ -70,7 +111,7 @@
 <div class="line20"></div>
 <div class="pagelist">
   <div class="l-btns">
-    <span>显示</span><asp:TextBox ID="txtPageNum" runat="server" CssClass="pagenum" onkeydown="return checkNumber(event);" OnTextChanged="txtPageNum_TextChanged"></asp:TextBox><span>条/页</span>
+    <span>显示</span><asp:TextBox ID="txtPageNum" runat="server" CssClass="pagenum" onkeydown="return checkNumber(event);" OnTextChanged="txtPageNum_TextChanged" AutoPostBack="True"></asp:TextBox><span>条/页</span>
   </div>
   <div id="PageContent" runat="server" class="default"></div>
 </div>
