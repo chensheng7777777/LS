@@ -37,6 +37,7 @@ namespace LS.CMS.Web.admin.users
                 this.txtNickName.Text = usr.nick_name;
                 this.rblSex.SelectedIndex = usr.user_gender;
                 this.rblStatus.SelectedIndex = usr.user_status;
+                this.txtAvatar.Text = usr.user_avatar;
                 if (usr.user_birth.HasValue)
                 {
                     this.txtBirthday.Text = usr.user_birth.Value.ToString("yyyy-MM-dd");
@@ -55,6 +56,7 @@ namespace LS.CMS.Web.admin.users
                 user_status=Convert.ToInt32(this.rblStatus.SelectedValue),
                 user_mobile=this.txtMobile.Text,
                 user_gender=Convert.ToInt32(this.rblSex.SelectedValue),
+                user_avatar=txtAvatar.Text
             };
             if (!string.IsNullOrEmpty(txtBirthday.Text))
             {

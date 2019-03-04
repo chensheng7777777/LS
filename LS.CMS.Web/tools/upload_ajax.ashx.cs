@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using LS.CMS.Common;
+using LS.CMS.Model;
+using LS.CMS.BLL;
 
 
 namespace LS.CMS.Web.tools
@@ -28,36 +30,39 @@ namespace LS.CMS.Web.tools
 
         private void UploadFile(HttpContext context)
         {
-            context.Response.ContentType = "text/plain";
-            HttpPostedFile upFile = context.Request.Files["upfile"];
-            if (upFile==null)
+            context.Response.ContentType = "application/json";
+            ls_sysconfig_bll bll = new ls_sysconfig_bll();
+            ls_sysconfig sysConfig = bll.LoadConfig();
+
+            string _delfile = LSRequest.GetString("DelFilePath"); //要删除的文件
+            string fileName = LSRequest.GetString("name"); //文件名
+            byte[] byteData = FileHelper.ConvertStreamToByteBuffer(context.Request.InputStream);
+            bool _iswater = false; //默认不打水印
+            bool _isthumbnail = false; //默认不生成缩略图
+
+            if (LSRequest.GetQueryString("IsWater") == "1")
             {
-                context.Response.Write(JSONHelper.SerializeObject(new {  state="n",error="请选择上传文件" }));
+                _iswater = true;
+            }
+            if (LSRequest.GetQueryString("IsThumbnail") == "1")
+            {
+                _isthumbnail = true;
+            }
+            if (byteData.Length == 0)
+            {
+                context.Response.Write("{\"status\": 0, \"msg\": \"请选择要上传文件！\"}");
                 return;
             }
-            string fileName = upFile.FileName;
-            byte[] byteData = FileHelper.ConvertStreamToByteBuffer(upFile.InputStream);
-            FileSave(context, upFile, false);
-        }
-
-
-        /// <summary>
-        /// 统一保存文件
-        /// </summary>
-        private void FileSave(HttpContext context, HttpPostedFile upFiles, bool isWater)
-        {
-            if (upFiles == null)
+            UpLoad upLoad = new UpLoad();
+            string msg = upLoad.FileSaveAs(byteData, fileName, _isthumbnail, _iswater);
+            //删除已存在的旧文件
+            if (!string.IsNullOrEmpty(_delfile))
             {
-                context.Response.Write(JSONHelper.SerializeObject(new { state ="", msg ="请选择要上传的文件"}));
-                return;
+                upLoad.DeleteFile(_delfile);
             }
-            string fileName = upFiles.FileName;
-            byte[] byteData = FileHelper.ConvertStreamToByteBuffer(upFiles.InputStream); //获取文件流
-            //开始上传
-            string remsg = new UpLoad().FileSaveAs(byteData, fileName, false, isWater);
-            
+            //返回成功信息
+            context.Response.Write(msg);
         }
-
 
 
         public bool IsReusable

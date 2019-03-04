@@ -33,7 +33,8 @@ namespace LS.CMS.Web.admin.users
                 real_name=txtRealName.Text,
                 user_gender=Convert.ToInt32(rblSex.SelectedValue),
                 user_mobile=txtMobile.Text,
-                user_name=txtUserName.Text
+                user_name=txtUserName.Text,
+                user_avatar=txtAvatar.Text
             };
             if (!string.IsNullOrEmpty(txtBirthday.Text))
             {
