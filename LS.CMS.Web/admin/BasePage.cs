@@ -23,7 +23,7 @@ namespace LS.CMS.Web.admin
         protected void BasePage_Load(object sender,EventArgs e)
         {
 #if DEBUG
-            HttpContext.Current.Session[LSKeys.SESSION_USER_INFO] = new ls_user_bll().GetCookieUser("chensheng", "1234");
+            HttpContext.Current.Session[LSKeys.SESSION_USER_INFO] = new ls_user_bll().Login("ccc", "123");
 #endif
 
             if (!IsLogin())

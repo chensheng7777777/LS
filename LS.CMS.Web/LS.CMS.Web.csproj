@@ -352,6 +352,7 @@
     <Compile Include="tools\upload_ajax.ashx.cs">
       <DependentUpon>upload_ajax.ashx</DependentUpon>
     </Compile>
+    <Compile Include="Upload.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\LS.CMS.BLL\LS.CMS.BLL.csproj">

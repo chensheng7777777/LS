@@ -8,6 +8,7 @@
     </id>
     <property name="user_name" column="user_name"></property>
     <property name="user_mobile" column="user_mobile"></property>
+    <property name="user_email" column="user_email"></property>
     <property name="user_password" column="user_password"></property>
     <property name="user_salt" column="user_salt"></property>
     <property name="user_gender" column="user_gender"></property>

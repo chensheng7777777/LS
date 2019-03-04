@@ -33,9 +33,28 @@ namespace LS.CMS.Web.tools
             if (upFile==null)
             {
                 context.Response.Write(JSONHelper.SerializeObject(new {  state="n",error="请选择上传文件" }));
+                return;
             }
             string fileName = upFile.FileName;
             byte[] byteData = FileHelper.ConvertStreamToByteBuffer(upFile.InputStream);
+            FileSave(context, upFile, false);
+        }
+
+
+        /// <summary>
+        /// 统一保存文件
+        /// </summary>
+        private void FileSave(HttpContext context, HttpPostedFile upFiles, bool isWater)
+        {
+            if (upFiles == null)
+            {
+                context.Response.Write(JSONHelper.SerializeObject(new { state ="", msg ="请选择要上传的文件"}));
+                return;
+            }
+            string fileName = upFiles.FileName;
+            byte[] byteData = FileHelper.ConvertStreamToByteBuffer(upFiles.InputStream); //获取文件流
+            //开始上传
+            string remsg = new UpLoad().FileSaveAs(byteData, fileName, false, isWater);
             
         }
 

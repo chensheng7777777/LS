@@ -103,11 +103,6 @@
                 <dd>
                     <asp:TextBox ID="txtMobile" runat="server" CssClass="input normal"></asp:TextBox></dd>
             </dl>
-            <dl>
-                <dt>通讯地址</dt>
-                <dd>
-                    <asp:TextBox ID="txtAddress" runat="server" CssClass="input normal"></asp:TextBox></dd>
-            </dl>
         </div>
 
         <!--/内容-->

@@ -63,7 +63,7 @@ namespace LS.CMS.Model
         /// <summary>
         /// 文件上传大小
         /// </summary>
-        public string attach_size { get; set; }
+        public int attach_size { get; set; }
         /// <summary>
         /// 视频上传大小
         /// </summary>
