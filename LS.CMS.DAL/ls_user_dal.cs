@@ -65,13 +65,14 @@ namespace LS.CMS.DAL
         /// <param name="usr"></param>
         public void UpdateUser(ls_user usr)
         {
-            IQuery query = db.CreateQuery("update ls_user set user_email=:user_email,nick_name=:nick_name,user_status=:user_status,user_mobile=:user_mobile,user_gender=:user_gender,user_birth=:user_birth where id=:id");
+            IQuery query = db.CreateQuery("update ls_user set user_email=:user_email,nick_name=:nick_name,user_status=:user_status,user_mobile=:user_mobile,user_gender=:user_gender,user_birth=:user_birth,user_avatar=:user_avatar where id=:id");
             query.SetString("user_email", usr.user_email);
             query.SetString("nick_name", usr.nick_name);
             query.SetInt32("user_status", usr.user_status);
             query.SetString("user_mobile", usr.user_mobile);
             query.SetInt32("user_gender", usr.user_gender);
             query.SetParameter("user_birth",usr.user_birth);
+            query.SetString("user_avatar",usr.user_avatar);
             query.SetInt32("id",usr.id);
             query.ExecuteUpdate();
         }

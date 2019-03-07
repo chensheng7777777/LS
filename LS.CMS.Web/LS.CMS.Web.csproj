@@ -97,6 +97,7 @@
     <Content Include="admin\js\index.js" />
     <Content Include="admin\js\main.js" />
     <Content Include="admin\js\uploader.js" />
+    <Content Include="admin\roles\role_list.aspx" />
     <Content Include="admin\skin\icon\iconfont.eot" />
     <Content Include="admin\skin\icon\iconfont.ttf" />
     <Content Include="admin\skin\icon\iconfont.woff" />
@@ -312,6 +313,13 @@
     </Compile>
     <Compile Include="admin\login.aspx.designer.cs">
       <DependentUpon>login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="admin\roles\role_list.aspx.cs">
+      <DependentUpon>role_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="admin\roles\role_list.aspx.designer.cs">
+      <DependentUpon>role_list.aspx</DependentUpon>
     </Compile>
     <Compile Include="admin\users\user_add.aspx.cs">
       <DependentUpon>user_add.aspx</DependentUpon>
