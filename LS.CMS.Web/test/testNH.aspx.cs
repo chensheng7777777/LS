@@ -16,9 +16,7 @@ namespace LS.CMS.Web.test
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            RedisHelper helper = new RedisHelper();
-            helper.Insert("1", "cccc");
-            var model = helper.Get("1");
+            
         }
     }
 }

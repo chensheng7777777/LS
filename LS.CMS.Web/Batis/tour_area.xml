@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sqlMap namespace="Ibatis" xmlns="http://ibatis.apache.org/mapping" xmlns:xls="http://www.w3.org/2001/XMLSchema-instance">
+  <statements>
+    <select id="SelectAllArea" resultClass="LS.CMS.Model.tour_area">
+      select * from dbo.tour_area
+    </select>
+  </statements>
+</sqlMap>

@@ -19,6 +19,11 @@
     <script src="../../scripts/datepicker/WdatePicker.js"></script>
     <script src="../js/common.js"></script>
     <script src="../js/main.js"></script>
+    <script>
+        function PostSMS() {
+            parent.jsprint("发送失败,尚未开发此功能","");
+        }
+    </script>
 </head>
 <body class="mainbody">
 <form id="form1" runat="server">

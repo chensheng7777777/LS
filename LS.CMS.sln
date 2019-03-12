@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LS.CMS.Web", "LS.CMS.Web\LS
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LS.CMS.DBUtility", "LS.CMS.DBUtility\LS.CMS.DBUtility.csproj", "{FA8AF493-9F8B-4B28-AD65-890D4BF8BCA6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LS.CMS.Domain", "LS.CMS.Domain\LS.CMS.Domain.csproj", "{A2900907-CF8A-4BAE-B92B-9208893538E9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{FA8AF493-9F8B-4B28-AD65-890D4BF8BCA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA8AF493-9F8B-4B28-AD65-890D4BF8BCA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA8AF493-9F8B-4B28-AD65-890D4BF8BCA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A2900907-CF8A-4BAE-B92B-9208893538E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2900907-CF8A-4BAE-B92B-9208893538E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2900907-CF8A-4BAE-B92B-9208893538E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2900907-CF8A-4BAE-B92B-9208893538E9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

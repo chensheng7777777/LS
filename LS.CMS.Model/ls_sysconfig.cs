@@ -124,5 +124,13 @@ namespace LS.CMS.Model
         ///文字大小(像素)
         /// </summary>
         public int watermark_fontsize { get; set; }
+        /// <summary>
+        /// 高德js开发者Key值
+        /// </summary>
+        public string gaode_jskey { get; set; }
+        /// <summary>
+        /// 高德地图WebAPI开发者Key值
+        /// </summary>
+        public string gaode_apikey { get; set; }
     }
 }

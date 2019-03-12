@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" namespace="LS.CMS.Model" assembly="LS.CMS.Model">
+  <class name="tour_area" table="tour_area">
+    <id name="id" column="id">
+      <generator class="native"/>
+    </id>
+    <property name="area_name" column="area_name"></property>
+    <property name="area_type" column="area_type"></property>
+    <property name="area_code" column="area_code"></property>
+    <property name="parent_code" column="parent_code"></property>
+    <property name="area_longitude" column="area_longitude"></property>
+    <property name="key_times" column="key_times"></property>
+    <property name="area_en" column="area_en"></property>
+    <property name="area_alias" column="area_alias"></property>
+    <property name="create_time" column="create_time"></property>
+    <property name="create_user" column="create_user"></property>
+  </class>
+</hibernate-mapping>
